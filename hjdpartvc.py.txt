@@ -1,0 +1,17 @@
+import os
+import docx
+
+path = '/home/kali/iss104/final'
+os.chdir(path)
+
+fname = 'wordfileFE.docx'
+doc = docx.Document(fname)
+
+prop = doc.core_properties
+            
+metadata = {}
+for d in dir(prop):
+    if not d.startswith('_'):
+        metadata[d] = getattr(prop, d)
+            
+print(metadata)

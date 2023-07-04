@@ -1,0 +1,52 @@
+import crypt 
+import hashlib
+
+
+def main():
+	print("testing password for UserID: four")
+	pass1 = "a6b8144c8d7d4da2cdaf9127f5945242"
+	name1 = "four"
+	passtest(pass1, name1)
+	
+	print("testing password for UserID: five")
+	pass2 = "450615306e4de1b92c391f2651f78268"
+	name2 = "five"
+	passtest(pass2, name2)
+	
+	print("testing password for UserID: six")
+	pass3 = "10ac1c3b25ec679bc0be632b504f8f2f"
+	name3 = "six"
+	passtest(pass3, name3)
+
+def passtest(crypt_pass, name):
+	found = False
+	count = 0
+	while found != True:
+		n = str(count)
+		new1 = n + name + n + n
+		new2 = n + n + name + n
+		crypt1 = hashlib.new('md5', new1.encode("utf-8"))
+		crypt2 = hashlib.new('md5', new2.encode("utf-8"))
+		crypt5 = (crypt1.hexdigest())
+		crypt6 = (crypt2.hexdigest())
+#		print(crypt5)
+#		print(crypt6)
+		if crypt5 == crypt_pass:
+			found = True
+			print("Password Matched")
+			print(new1)
+			print('')
+		elif crypt6 == crypt_pass:
+			found = True
+			print("Password Matched")
+			print(new2)
+			print('')
+		elif count == 10:
+			found = True
+			print('No Passwords Matched')
+			print('')
+		else:
+			count+=1
+
+if __name__=="__main__":
+	main()

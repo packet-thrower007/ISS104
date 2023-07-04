@@ -1,0 +1,51 @@
+import crypt 
+
+
+
+def main():
+	print("testing password for UserID: one")
+	pass1 = "$6$nAKOQVFFsFbiEOcz$E5lJRSqBYlLdndygBIPS616mN6fWN5Tev.Lq5DVqgBH8KQKYJhADtXcd1kN6RRgwZhu7TzcRppeLbhL6gKpr9/"
+	name1 = "one"
+	salt1 = "$6$nAKOQVFFsFbiEOcz"
+	passtest(pass1, name1, salt1)
+	
+	print("testing password for UserID: two")
+	pass2 = "$6$p/beUy9UNsvYJSDX$CZSLUMHEvswRDbvuOrr.TgnBa4xpxQmOsmIxTX0Oaq7yvPYoH34SkgP7vXpFuUWGrKqIUzKcbEQPLuW/oPDOU1"
+	name2 = "two"
+	salt2 = "$6$p/beUy9UNsvYJSDX"
+	passtest(pass2, name2, salt2)
+	
+	print("testing password for UserID: three")
+	pass3 = "$6$wg4DqXHrKWG05fq8$PSfh/pmEA.QUcp1BFAV73XHf6S4/J7EAYcS9SYEr9tnBAUeaDAMJoqPk5o12Y8JNrTiCUaZlyZlCsMg/gOjnx/"
+	name3 = "three"
+	salt3 = "$6$wg4DqXHrKWG05fq8"
+	passtest(pass3, name3, salt3)
+
+def passtest(crypt_pass, name, salt):
+	found = False
+	count = 0
+	while found != True:
+		n = str(count)
+		new1 = n + name + n + n
+		new2 = n + n + name + n
+		crypt1 = crypt.crypt(new1,salt)
+		crypt2 = crypt.crypt(new2,salt)
+		if crypt1 == crypt_pass:
+			found = True
+			print("Password Matched")
+			print(new1)
+			print('')
+		elif crypt2 == crypt_pass:
+			found = True
+			print("Password Matched")
+			print(new2)
+			print('')
+		elif count == 10:
+			found = True
+			print('No Passwords Matched')
+			print('')
+		else:
+			count+=1
+
+if __name__=="__main__":
+	main()

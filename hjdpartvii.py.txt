@@ -1,0 +1,8 @@
+import json
+from pandas import json_normalize
+
+with open("final.json", "r") as read_file:
+	data = json.load(read_file)
+	for entry in data:
+		print("Color: ", entry['color'], "-----------------", "Value: ", entry['value'])
+read_file.close()

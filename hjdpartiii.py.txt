@@ -1,0 +1,31 @@
+import string
+
+alphabet = string.ascii_lowercase # "abcdefghijklmnopqrstuvwxyz"
+
+def decrypt():
+    result = ""
+    message2 = input("Enter the message you would like to decrypt: ").strip()
+    for i in (message2):
+        if i.isupper():
+            result=result+" "+i.upper()
+#            print(result)
+        else:
+            result=result+i
+    message = result.lower()
+    key = int(10)
+    
+    decrypted_message = ""
+
+    for letter in message:
+
+        if letter in alphabet:
+            position = alphabet.find(letter)
+            new_position = (position - key) % 26
+            new_character = alphabet[new_position]
+            decrypted_message += new_character
+        else:
+            decrypted_message += letter
+
+    print(decrypted_message)
+
+decrypt()

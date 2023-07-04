@@ -1,0 +1,23 @@
+import requests
+#import urllib2
+from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as bs
+
+
+getpage=requests.get('https://whoisnefarious.com')
+getpage_soup=BeautifulSoup(getpage.text, 'html.parser')
+
+meta=getpage_soup.findAll('meta')
+
+
+for m in meta:
+    print(m)
+
+def title():
+	req = requests.get('https://whoisnefarious.com')
+	soup = bs(req.content, 'lxml')
+	print("***********************************************************")
+	print("The Title is: ", soup.select_one('title').text)
+
+
+title()
